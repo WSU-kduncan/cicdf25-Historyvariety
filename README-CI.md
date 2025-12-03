@@ -15,12 +15,12 @@ This Project was used to create...
 
   - A Dockerfile is: "*A Dockerfile is a text file containing instructions for building source code, crucial for automated, multi-layer image builds.*"(4)
 
- ***What is this Website?***
+ ***What is this Website? And what are the contents?***
 
-  - ([web-content folder](web-content)) - contains the files to portray a beach-themed website.
-    - ([Index.html](web-content/index.html)) - the home page.
-    - `about.html` - a page dedicated to explaining about the beach.
-    - `styles.css` - the CSS style file.
+  - ([web-content folder](web-content)) - contains the files to portray a beach-themed website, created by Chat.gpt using the prompt: **"Create a small beach-themed website with two HTML files and one CSS file."**(2)
+    - ([index.html](web-content/index.html)) - the home page.
+    - ([about.html](web-content/about.html)) - a page dedicated to explaining about the beach.
+    - ([styles.css](web-content/styles.css))  - the CSS style file.
   
 ***Explanation of the contents described in: ([Dockerfile](Dockerfile))***
 
