@@ -27,27 +27,33 @@ This Project was used to create...
   - `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.(5)
   - `COPY web-content/ /usr/local/apache2/htdocs/`: Copies all content in the `web-content` directory and puts it inside our container, where Apache looks for our website files.(5)
 
-***Build and Push Image***
+***Building and Pushing a Docker Image***
 
   **How to build a Docker image locally**
+
+  
   In the root of your repository, run the following commands in this order:
       1. `docker build -t historyvariety/beachwebsite:latest .` - builds the Docker image locally.
       2. `docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest` - Tags the image for *Dockerhub*, I used `latest` as the default, but you can change that to be specific;        it's just the version identifier. 
-```
-  docker build -t historyvariety/beachwebsite:latest .
-  docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest
-  docker login -u  (username)
-  docker push historyvariety/project4:latest
-```
 
-***Creating a DockerHub Personal Access Token (PAT)***
-  1. Log in to `Dockerhub`
-  2. Go to `DockerHub` → `Account Settings` → `Security` → `New Access Token`
-  3. Give your token a descriptive but short name: `Project4`
-  4. Choose the scope. I recommend the `Read & Write scope`, which allows you to push and pull images safely.
-  5. Copy the token — you will use it in place of your password when running docker login.
-  6. *Docker* will run you through how to log in, but essentially type `docker login -u yourusername` into the command line, or copy the command from *Docker*. 
-  7. Copy the PAT password Docker gives you, and paste it in when asked for the password on the command line.
+
+  ***Creating a DockerHub Personal Access Token (PAT)***
+    1. Log in to `Dockerhub`
+    2. Go to `DockerHub` → `Account Settings` → `Security` → `New Access Token`
+    3. Give your token a descriptive but short name: `Project4`
+    4. Choose the scope. I recommend the `Read & Write scope`, which allows you to push and pull images safely.
+    5. Copy the token — you will use it in place of your password when running docker login.
+    6. *Docker* will run you through how to log in, but essentially type `docker login -u yourusername` into the command line, or copy the command from *Docker*. 
+    7. Copy the PAT password Docker gives you, and paste it in when asked for the password on the command line.
+
+
+***How to push the Docker image***
+
+
+  Type these commands into the terminal:
+    1. `docker login -u historyvarety` -> Login to Docker using your *PAT*
+    2. `docker push historyvariety/project4:latest` -> Push the image to the repository.
+
 
 ***Link to my Dockerhub Repo***: https://hub.docker.com/r/historyvariety/project4
 
