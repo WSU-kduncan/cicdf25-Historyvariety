@@ -8,12 +8,19 @@ Brianna Perdue
 This Project was used to create...
 
 
-***DockerFile***
+***DockerFile and Website Content***
 
 
 **What is a Dockerfile? And what are the contents of the Dockerfile in this Repository?**
 
   - A Dockerfile is: "*A Dockerfile is a text file containing instructions for building source code, crucial for automated, multi-layer image builds.*"(4)
+
+ ***What is this Website?***
+
+  - ([web-content folder](web-content)) - contains the files to portray a beach-themed website.
+    - ([Index.html](web-content/index.html)) - the home page.
+    - `about.html` - a page dedicated to explaining about the beach.
+    - `styles.css` - the CSS style file.
   
 ***Explanation of the contents described in: ([Dockerfile](Dockerfile))***
 
