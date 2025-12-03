@@ -1,65 +1,74 @@
-# Project 4 - Continous Integration
+# Project 4 - Continuous Integration
 Brianna Perdue
 
 ## Details
 
-***Project Description***
-
+### Project Description
 This Project was used to create...
 
 
-***DockerFile and Website Content***
+### Dockerfile and Website Content
+
+#### What is a Dockerfile? And what are the contents of the Dockerfile in this Repository?
+
+- A Dockerfile is: "*A Dockerfile is a text file containing instructions for building source code, crucial for automated, multi-layer image builds.*"(4)
 
 
-**What is a Dockerfile? And what are the contents of the Dockerfile in this Repository?**
+#### What is this Website? And what are the contents?
 
-  - A Dockerfile is: "*A Dockerfile is a text file containing instructions for building source code, crucial for automated, multi-layer image builds.*"(4)
-
- ***What is this Website? And what are the contents?***
-
-  - ([web-content folder](web-content)) - contains the files to portray a beach-themed website, created by Chat.gpt using the prompt: **"Create a small beach-themed website with two HTML files and one CSS file."**(2)
-    - ([index.html](web-content/index.html)) - the home page.
-    - ([about.html](web-content/about.html)) - a page dedicated to explaining about the beach.
-    - ([styles.css](web-content/styles.css))  - the CSS style file.
-  
-***Explanation of the contents described in: ([Dockerfile](Dockerfile))***
-
-  - `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.(5)
-  - `COPY web-content/ /usr/local/apache2/htdocs/`: Copies all content in the `web-content` directory and puts it inside our container, where Apache looks for our website files.(5)
-
-***Building and Pushing a Docker Image***
-
-  **How to build a Docker image locally**
-
-  
-  In the root of your repository, run the following commands in this order:
-      1. `docker build -t historyvariety/beachwebsite:latest .` - builds the Docker image locally.
-      2. `docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest` - Tags the image for *Dockerhub*, I used `latest` as the default, but you can change that to be specific;        it's just the version identifier. 
+- [web-content folder](web-content) - contains the files to portray a beach-themed website, created by Chat.gpt using the prompt: **"Create a small beach-themed website with two HTML files and one CSS file."**(2)  
+  - [index.html](web-content/index.html) - the home page  
+  - [about.html](web-content/about.html) - a page dedicated to explaining about the beach  
+  - [styles.css](web-content/styles.css) - the CSS style file
 
 
-  ***Creating a DockerHub Personal Access Token (PAT)***
+#### Explanation of the contents described in the Dockerfile
+
+The Dockerfile for this repository/docker image can be found here: [Dockerfile](Dockerfile)
+
+- `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.(5)  
+- `COPY web-content/ /usr/local/apache2/htdocs/`: Copies all content in the `web-content` directory and puts it inside our container, where Apache looks for our website files.(5)
 
 
-    1. Log in to `Dockerhub`
-    2. Go to `DockerHub` → `Account Settings` → `Security` → `New Access Token`
-    3. Give your token a descriptive but short name: `Project4`
-    4. Choose the scope. I recommend the `Read & Write scope`, which allows you to push and pull images safely.
-    5. Copy the token — you will use it in place of your password when running docker login.
-    6. *Docker* will run you through how to log in, but essentially type `docker login -u yourusername` into the command line, or copy the command from *Docker*. 
-    7. Copy the PAT password Docker gives you, and paste it in when asked for the password on the command line.
+### Building and Pushing a Docker Image
 
+#### How to build the Docker image locally and push it to the Docker Repository
 
-***How to push the Docker image***
+In the root of your repository, run the following commands in this order:
 
+1. `docker build -t historyvariety/beachwebsite:latest .` - builds the Docker image locally  
+2. `docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest` - tags the image for *Docker Hub*. I used `latest` as the default, but you can change that to be specific; it's just the version identifier
+3.  `docker login -u historyvariety`: Login to Docker using your *PAT*: to set up a *PAT*, see here: [PAT Setup Guide](#DockerHub-Personal-Access-Token-(PAT)-Setup-Guide))
+4.  `docker push historyvariety/project4:latest`: Pushes the image to your repository
 
-  1. `docker login -u historyvarety` -> Login to Docker using your *PAT*
-  2. `docker push historyvariety/project4:latest` -> Push the image to the repository.
+### Guide to Running a Container to Serve the Web Application
+In your terminal, run the following command: 
+- `docker run -d -p 80:80 historyvariety/project4:latest`: this will run the container in detached mode, mapping container port 80 to the host port 80.
+After running that command, you should be able to view your website at: `http://<your-ec2-public-ip>`. For me, I created a new instance and viewed it at `http://http://98.92.100.139/`
+If you would like to see a list of your containers, run the command: `docker ps`
+If you want to stop the container, run the command: `docker stop <container_id>`
 
+#### Link to my DockerHub Repo
+[My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
 
-***Link to my Dockerhub Repo***: https://hub.docker.com/r/historyvariety/project4
+## Configuring GitHub Repository Secrets
 
+#### DockerHub-Personal-Access-Token-(PAT)-Setup-Guide
 
-## Diagram
+1. Log in to DockerHub  
+2. Go to **DockerHub -> Account Settings -> Security -> New Access Token**  
+3. Give your token a descriptive but short name: `Project4`  
+4. Choose the scope. I recommend the **Read & Write scope**, which allows *GitHub actions* to push and pull images safely to *Dockerhub*
+5. Copy the token (make sure to store it somewhere because you will not have access to it again) — you will use it as a secret in our *GitHub* repository
+6. *Docker* will run you through how to log in, but essentially type `docker login -u yourusername` into the command line, or copy the command from Docker  
+7. Copy the PAT password Docker gives you, and paste it in when asked for the password on the command line.
+
+### Setting up Repository Secrets in GitHub
+1. Go to your repository -> **Settings -> Secrets and variables -> Actions -> New repository secret**
+2. still doing this one
+
+### Diagram
+
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
