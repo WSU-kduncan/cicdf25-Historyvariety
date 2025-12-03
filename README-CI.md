@@ -38,6 +38,8 @@ This Project was used to create...
 
 
   ***Creating a DockerHub Personal Access Token (PAT)***
+
+
     1. Log in to `Dockerhub`
     2. Go to `DockerHub` → `Account Settings` → `Security` → `New Access Token`
     3. Give your token a descriptive but short name: `Project4`
@@ -50,9 +52,8 @@ This Project was used to create...
 ***How to push the Docker image***
 
 
-  Type these commands into the terminal:
-    1. `docker login -u historyvarety` -> Login to Docker using your *PAT*
-    2. `docker push historyvariety/project4:latest` -> Push the image to the repository.
+  1. `docker login -u historyvarety` -> Login to Docker using your *PAT*
+  2. `docker push historyvariety/project4:latest` -> Push the image to the repository.
 
 
 ***Link to my Dockerhub Repo***: https://hub.docker.com/r/historyvariety/project4
