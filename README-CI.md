@@ -73,7 +73,7 @@ We created these secrets to allow GitHub Actions to authenticate with DockerHub 
   
 ## Continuous Integration with GitHub Actions
 
-### Explanation of Workflow Triggers
+### Workflow-Triggers
 My workflow triggers on any `push` to the `main` branch of the repository:
 ```
 # GitHub Actions workflow name
@@ -85,6 +85,21 @@ on:
   push:
     branches: [main]
 ```
+
+
+### Workflow-Steps
+The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` performs the steps:
+  1. `Checkout repository`: `uses: actions/checkout@v3` to get the latest code.
+  2. `Login to DockerHub`: `uses: docker/login-action@v2` with the GitHub secrets to log in to *DockerHub*
+  3. `Build and push Docker image`: `uses: docker/build-push-action@v5` to build and push the *Docker* image.
+      - Builds the image using the repository root as the `context  .`(7)
+      - Pushes the Docker image using the tag `latest`
+    
+### Values to update for Another Repository
+
+  - Change `DOCKER_HUB_REPO` in `env`: to your repository name.
+  - Update the `Docker tag` under `tags`: to match your *DockerHub* username and image.
+  - Update secrets if needed to match your DockerHub credentials.
 
 ### Diagram
 
