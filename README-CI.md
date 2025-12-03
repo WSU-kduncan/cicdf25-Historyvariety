@@ -71,8 +71,20 @@ If you want to stop the container, run the command: `docker stop <container_id>`
   
 We created these secrets to allow GitHub Actions to authenticate with DockerHub without exposing our credentials in code. It helps with security!(6)
   
-## Setting up Continuous Integration with GitHub Actions
+## Continuous Integration with GitHub Actions
 
+### Explanation of Workflow Triggers
+My workflow triggers on any `push` to the `main` branch of the repository:
+```
+# GitHub Actions workflow name
+name: Docker-Login-Build-Push
+
+# Event trigger(s)
+on:
+  # Triggers only on pushes to main branch
+  push:
+    branches: [main]
+```
 
 ### Diagram
 
