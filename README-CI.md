@@ -15,7 +15,7 @@ This Project was used to create...
 
   - A Dockerfile is: "*A Dockerfile is a text file containing instructions for building source code, crucial for automated, multi-layer image builds.*"(4)
   
-***Explanation of the contents described in: (link to Dockerfile)***
+***Explanation of the contents described in: ([Dockerfile](Dockerfile))***
 
   - `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.(5)
   - `COPY web-content/ /usr/local/apache2/htdocs/`: Copies all content in the `web-content` directory and puts it inside our container, where Apache looks for our website files.(5)
