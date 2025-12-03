@@ -29,6 +29,10 @@ This Project was used to create...
 
 ***Build and Push Image***
 
+  **How to build a Docker image locally**
+  In the root of your repository, run the following commands in this order:
+      1. `docker build -t historyvariety/beachwebsite:latest .` - builds the Docker image locally.
+      2. `docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest` - Tags the image for *Dockerhub*, I used `latest` as the default, but you can change that to be specific;        it's just the version identifier. 
 ```
   docker build -t historyvariety/beachwebsite:latest .
   docker tag historyvariety/beachwebsite:latest historyvariety/project4:latest
