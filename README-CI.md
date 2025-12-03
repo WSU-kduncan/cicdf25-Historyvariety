@@ -17,9 +17,8 @@ This Project was used to create...
   
 ***Explanation of the contents described in: (link to Dockerfile)***
 
-  - `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.
-  - `COPY web-content/ /usr/local/apache2/htdocs/`: 
-
+  - `FROM httpd:2.4`: Describes the base of our *Docker* image as the official *Docker* image for *Apache HTTP Server*, specifically version `2.4`.(5)
+  - `COPY web-content/ /usr/local/apache2/htdocs/`: Copies all content in the `web-content` directory and puts it inside our container, where Apache looks for our website files.(5)
 
 ***Build and Push Image***
 
@@ -49,3 +48,4 @@ This Project was used to create...
 2. ChatGPT (GPT-5.1) - Prompt: "Create a small beach-themed website with two HTML files and one CSS file."
 3. https://github.com/WSU-kduncan/ceg3120f25-Historyvariety/tree/main/Project3 -> Took all my Dockerfile instructions from there, plus my website files from it
 4. https://docs.docker.com/build/concepts/dockerfile/ -> Used to define what the Dockerfile is. (Wanted to upgrade these descriptions to be better than the ones in Project 3)
+5. https://docs.docker.com/build/concepts/dockerfile/
