@@ -65,7 +65,14 @@ If you want to stop the container, run the command: `docker stop <container_id>`
 
 ### Setting up Repository Secrets in GitHub
 1. Go to your repository -> **Settings -> Secrets and variables -> Actions -> New repository secret**
-2. still doing this one
+2. Create two secrets with the following information:
+    - **DOCKER_USERNAME** → your DockerHub username  
+    - **DOCKER_TOKEN** → your DockerHub PAT that was generated
+  
+We created these secrets to allow GitHub Actions to authenticate with DockerHub without exposing our credentials in code. It helps with security!(6)
+  
+## Setting up Continuous Integration with GitHub Actions
+
 
 ### Diagram
 
@@ -76,3 +83,4 @@ If you want to stop the container, run the command: `docker stop <container_id>`
 3. https://github.com/WSU-kduncan/ceg3120f25-Historyvariety/tree/main/Project3 -> Took all my Dockerfile instructions from there, plus my website files from it
 4. https://docs.docker.com/build/concepts/dockerfile/ -> Used to define what the Dockerfile is. (Wanted to upgrade these descriptions to be better than the ones in Project 3)
 5. https://docs.docker.com/build/concepts/dockerfile/
+6. https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets -> showed me how to set up secrets and explained why we use them.
