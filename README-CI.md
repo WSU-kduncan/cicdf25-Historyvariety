@@ -84,3 +84,4 @@ We created these secrets to allow GitHub Actions to authenticate with DockerHub 
 4. https://docs.docker.com/build/concepts/dockerfile/ -> Used to define what the Dockerfile is. (Wanted to upgrade these descriptions to be better than the ones in Project 3)
 5. https://docs.docker.com/build/concepts/dockerfile/
 6. https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets -> showed me how to set up secrets and explained why we use them.
+7. https://docs.github.com/en/actions/reference/workflows-and-actions/contexts -> Context . used in git actions file
