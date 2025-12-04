@@ -22,19 +22,6 @@ This Project was used to create an automated system that builds, tags, and deplo
       Developer/Programmer["Developes and commits code/creates the git tag"] --> GitHub["GitHub Repository"]
       GitHub --> Workflow["GitHub Actions Workflow: gitactions.yml/Docker-Login-Build-Push"]
       Workflow --> Checkout["Step 1: Checkout repository"]
-      PublicSubnet --> NATGateway["NAT Gateway"]
-      PublicSubnet --> PublicRouteTable["Public Route Table"]
-      PublicRouteTable --> InternetGateway["Internet Gateway"]
-      ProxyInstance --> ElasticIP["Elastic IP"]
-      ProxyInstance --> SecurityGroup["Security Group: LB-sg"]
-      PrivateSubnet --> WebServ1["WebServ1 (Docker)"]
-      PrivateSubnet --> WebServ2["WebServ2 (Docker)"]
-      PrivateSubnet --> WebServ3["WebServ3 (Docker)"]
-      PrivateSubnet --> PrivateRouteTable["Private Route Table"]
-      PrivateRouteTable --> NATGateway
-      WebServ1 --> SecurityGroup
-      WebServ2 --> SecurityGroup
-      WebServ3 --> SecurityGroup
 ```
 ### Dockerfile and Website Content
 
