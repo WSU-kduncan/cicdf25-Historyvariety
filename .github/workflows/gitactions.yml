@@ -10,7 +10,7 @@ name: Docker-Login-Build-Push
 
 # Event trigger(s)
 on:
-  # Triggers only when a tag is push to the repository
+  # Triggers only on  when a tag is push to the repository
   push:
     tags:
       - 'v*.*.*'   # ONLY trigger: semantic version tags like v1.2.0
@@ -39,6 +39,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}
+          tags: |
+            type=ref,event=tag
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{full}}
       # Step 3: Login to DockerHub
       # Credentials stored as GitHub repository secrets
       # Usage documentation: https://github.com/marketplace/actions/docker-login
