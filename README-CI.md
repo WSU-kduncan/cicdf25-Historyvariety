@@ -117,9 +117,40 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
    ```
 [My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
 
+### Generating and Pushing Tags
 
+To see tags in a GitHub Repository, there are two commands you can use:
+  - `git tag`: Checks all tags.
+  - `git tag -n`: see tags with notes.
+
+To generate a tag with semantic version formatting, run the command: `git tag -a v3.8.1 -m "Version 3.8.1"`
+To push a singular tag, use the command: `git push origin v3.8.1`
+To push all tags, use the command: `git push --tags`
+
+### Workflow-Triggers
+The workflow triggers only when a tag is pushed to the repository:
+```
+# Event trigger(s)
+on:
+  # Triggers only on  when a tag is push to the repository
+  push:
+    tags:
+      - 'v*.*.*'   # ONLY trigger: semantic version tags like v1.2.0
+```
+In short, it makes it so, Continuous Integration runs automatically for any `semantic version tags` and does not run for any of our regular commits.
 ### Diagram
 
+### Workflow-Steps
+The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` performs the steps:
+  1. `Checkout repository`: `uses: actions/checkout@v3` to get the latest code.
+  2. `Extract Docker metadata`: `uses: docker/metadata-action@v5` to generate tags automatically from the git tags: `latest`, `major`, `major.minor`
+  3. `Login to DockerHub`: `uses: docker/login-action@v2` with the GitHub secrets to log in to *DockerHub*
+  4. `Build and push Docker image`: `uses: docker/build-push-action@v5` to build and push the *Docker* image.
+      - Builds the image using the repository root as the `context  .`(7)
+      - Pushes the Docker image with tags generated from the git tags with `${{ steps.meta.outputs.tags }}`(8)
+  
+  
+[Link to Github workflow file](.github/workflows/gitactions.yml)
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
@@ -129,3 +160,4 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
 5. https://docs.docker.com/build/concepts/dockerfile/
 6. https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets -> showed me how to set up secrets and explained why we use them.
 7. https://docs.github.com/en/actions/reference/workflows-and-actions/contexts -> Context . used in git actions file
+8. https://semver.org/ -> helped with part 3 of adding semantic versioning.
