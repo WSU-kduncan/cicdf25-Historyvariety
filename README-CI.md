@@ -94,7 +94,9 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
   3. `Build and push Docker image`: `uses: docker/build-push-action@v5` to build and push the *Docker* image.
       - Builds the image using the repository root as the `context  .`(7)
       - Pushes the Docker image using the tag `latest`
-  [Link to Github workflow file](web-content/index.html)
+  
+  
+[Link to Github workflow file](.github/workflows/gitactions.yml)
 ### Values to update for Another Repository
 
   - Change `DOCKER_HUB_REPO` in `env`: to your repository name.
@@ -113,7 +115,7 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
      docker pull <dockerhub-username>/project4:latest
      docker run -it --rm <dockerhub-username>/project4:latest
    ```
-3. [My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
+[My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
 
 
 ### Diagram
