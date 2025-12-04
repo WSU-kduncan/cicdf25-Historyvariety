@@ -10,9 +10,10 @@ name: Docker-Login-Build-Push
 
 # Event trigger(s)
 on:
-  # Triggers only on pushes to main branch
+  # Triggers only when a tag is push to the repository
   push:
-    branches: [main]
+    tags:
+      - 'v*.*.*'   # ONLY trigger: semantic version tags like v1.2.0
 
 # Variables used in this workflow
 env:
@@ -31,8 +32,14 @@ jobs:
       # Step 1: Checkout repo contents to the runner
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Step 2: Login to DockerHub
+      # Step 2: Extract Docker Metadata
+      # Usage documentation: https://semver.org/
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}
+      # Step 3: Login to DockerHub
       # Credentials stored as GitHub repository secrets
       # Usage documentation: https://github.com/marketplace/actions/docker-login
       - name: Login to DockerHub
@@ -41,13 +48,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # Step 3: Build and push Docker image
+      # Step 4: Build and push Docker image
       # Using official docker/build-push-action v5
       # Docs: https://github.com/docker/build-push-action
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .                 # The Build context is the repo root/using context found in: https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
+          context: .                 # The Build context is the repo root
           push: true                 # Pushing image to DockerHub
-          tags: ${{ secrets.DOCKER_USERNAME }}/project4:latest
+          tags: ${{ steps.meta.outputs.tags }}  # Tagging now
+          labels: ${{ steps.meta.outputs.labels }}
           # Example for advanced tags: see https://github.com/docker/build-push-action/blob/master/docs/advanced/tags-labels.md
