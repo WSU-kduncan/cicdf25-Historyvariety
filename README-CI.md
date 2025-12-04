@@ -24,7 +24,7 @@ This Project was used to create an automated system that builds, tags, and deplo
       Workflow --> Checkout
       Workflow --> Metadata
       Workflow --> Login
-      Workflow --> BuildPush
+      Workflow --> Build/Push
       BuildPush --> DockerHub
       DockerHub --> Pull/Run
 ```
