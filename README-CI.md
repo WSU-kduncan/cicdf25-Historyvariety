@@ -1,12 +1,41 @@
 # Project 4 - Continuous Integration
 Brianna Perdue
 
-## Details
+## Project Details
 
 ### Project Description
-This Project was used to create...
+This Project was used to create an automated system that builds, tags, and deploys Docker container images whenever a semantic version tag is pushed to the GitHub repository.
 
+### Table of all Tools Used in this Project and Their Role
+| Tool Used                        | The Role it Played                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| **GitHub**                   | Hosts the repository and triggers Continuous Integration workflows.                         |
+| **GitHub Actions**           | Automates the workflow for building and pushing all of our Docker images.          |
+| **docker/metadata-action**   | Generates our Docker image tags from the git `semantic version tags`.             |
+| **docker/login-action**      | Authenticates to our DockerHub repo using our repository secrets.                    |
+| **docker/build-push-action** | Builds the Docker images from the repository code and then pushes them to our DockerHub repo. |
+| **DockerHub**                | Stores and hosts our container images for any deployment or testing.            |
 
+### Diagram
+```mermaid
+  graph TD
+      VPC["VPC: 192.168.0.0/23"] --> PublicSubnet["Public Subnet: 192.168.0.0/24"]
+      VPC --> PrivateSubnet["Private Subnet: 192.168.1.0/24"]
+      PublicSubnet --> ProxyInstance["Proxy (HAProxy)"]
+      PublicSubnet --> NATGateway["NAT Gateway"]
+      PublicSubnet --> PublicRouteTable["Public Route Table"]
+      PublicRouteTable --> InternetGateway["Internet Gateway"]
+      ProxyInstance --> ElasticIP["Elastic IP"]
+      ProxyInstance --> SecurityGroup["Security Group: LB-sg"]
+      PrivateSubnet --> WebServ1["WebServ1 (Docker)"]
+      PrivateSubnet --> WebServ2["WebServ2 (Docker)"]
+      PrivateSubnet --> WebServ3["WebServ3 (Docker)"]
+      PrivateSubnet --> PrivateRouteTable["Private Route Table"]
+      PrivateRouteTable --> NATGateway
+      WebServ1 --> SecurityGroup
+      WebServ2 --> SecurityGroup
+      WebServ3 --> SecurityGroup
+```
 ### Dockerfile and Website Content
 
 #### What is a Dockerfile? And what are the contents of the Dockerfile in this Repository?
@@ -138,7 +167,6 @@ on:
       - 'v*.*.*'   # ONLY trigger: semantic version tags like v1.2.0
 ```
 In short, it makes it so, Continuous Integration runs automatically for any `semantic version tags` and does not run for any of our regular commits.
-### Diagram
 
 ### Workflow-Steps
 The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` performs the steps:
@@ -148,9 +176,41 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
   4. `Build and push Docker image`: `uses: docker/build-push-action@v5` to build and push the *Docker* image.
       - Builds the image using the repository root as the `context  .`(7)
       - Pushes the Docker image with tags generated from the git tags with `${{ steps.meta.outputs.tags }}`(8)
-  
+  *Note: The full tag still has the little v thing before the numbers from the git tag.*
+
+
+  ### Values to update for Another Repository
+
+  - Change `DOCKER_HUB_REPO` in `env`: to your repository name.
+  - Update secrets to match your *DockerHub* credentials.
+  - `Dockerfile path`: make sure `context ` points to the correct directory.
+
+### Workflow-Changes
+- Workflow triggers updated to only fire on git tag pushes. Example: `git tag -a v1.0.3 -m "Version 1.0.3"`
+- Added docker/metadata-action to generate `semantic tags` - the version ones.
+- Build/push step now uses `metadata-generated` tags instead of only the `: latest` ones.
   
 [Link to Github workflow file](.github/workflows/gitactions.yml)
+### Repo-Changes
+- You have to create and push semantic version git tags with commands:  `git tag -a v1.0.3 -m "Version 1.0.3"` and `git push origin v1.0.3`
+
+### Testing
+#### Workflow
+  1. Create a new tag with commands: `git tag -a v1.0.3 -m "Version 1.0.3"` and `git push origin v1.0.3`
+  2. Go to GitHub -> Actions -> Docker-Login-Build-Push
+  3. Confirm the workflow runs successfully and generates Docker tags, you can do this by clicking the newest workflow run and checking to make sure everything has a checkmark next to it.
+
+#### Docker Image
+1. Pull the image locally
+   ```
+    docker pull historyvariety/project4:latest
+    docker pull historyvariety/project4:1
+    docker pull historyvariety/project4:1.0
+    docker pull historyvariety/project4:v1.0.3
+   ```
+ 2. Then run the container with command: `docker run -it --rm historyvariety/project4:v1.0.3`
+
+[My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
