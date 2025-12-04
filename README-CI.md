@@ -200,7 +200,7 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
     docker pull historyvariety/project4:1.0
     docker pull historyvariety/project4:v1.0.3
    ```
- 2. Then run the container with command: `docker run -it --rm historyvariety/project4:v1.0.3`
+ 2. Then run the container with the command: `docker run -it --rm historyvariety/project4:v1.0.3`
 
 [My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
 
@@ -211,5 +211,11 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
 4. https://docs.docker.com/build/concepts/dockerfile/ -> Used to define what the Dockerfile is. (Wanted to upgrade these descriptions to be better than the ones in Project 3)
 5. https://docs.docker.com/build/concepts/dockerfile/
 6. https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets -> showed me how to set up secrets and explained why we use them.
-7. https://docs.github.com/en/actions/reference/workflows-and-actions/contexts -> Context . used in git actions file
+7. https://docs.github.com/en/actions/reference/workflows-and-actions/contexts -> Context . used in the git actions file
 8. https://semver.org/ -> helped with part 3 of adding semantic versioning.
+9. https://github.com/pattonsgirl/CEG3120/blob/main/Projects/Project4/FAQ.md -> helped me make a new instance for this Project
+10. https://github.com/pattonsgirl/CEG3120/blob/main/Projects/Project4/sample-workflows/docker-workflow-v2.yml -> copied and edited this for my .yml git actions file.
+11. https://docs.github.com/en/actions/get-started/understand-github-actions -> Helped me understand exactly what I was making for the gitactions file.
+12. https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax -> A very lovely Syntax guide for the GitHub Actions file that I also used, I forgot if I copied this link into the file, though.
+13. https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams -> Mermaid diagram page syntax, I love Mermaid diagrams so much.
+14. https://www.markdownguide.org/basic-syntax/ -> I used this to help with the formatting for Markdown, and it really also helped me organise things better.
