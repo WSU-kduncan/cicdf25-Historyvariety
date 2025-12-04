@@ -19,9 +19,9 @@ This Project was used to create an automated system that builds, tags, and deplo
 ### Diagram
 ```mermaid
   graph TD
-      VPC["VPC: 192.168.0.0/23"] --> PublicSubnet["Public Subnet: 192.168.0.0/24"]
-      VPC --> PrivateSubnet["Private Subnet: 192.168.1.0/24"]
-      PublicSubnet --> ProxyInstance["Proxy (HAProxy)"]
+      Developer/Programmer["Developes and commits code/creates the git tag"] --> GitHub["GitHub Repository"]
+      GitHub --> Workflow["GitHub Actions Workflow: gitactions.yml/Docker-Login-Build-Push"]
+      Workflow --> Checkout["Step 1: Checkout repository"]
       PublicSubnet --> NATGateway["NAT Gateway"]
       PublicSubnet --> PublicRouteTable["Public Route Table"]
       PublicRouteTable --> InternetGateway["Internet Gateway"]
