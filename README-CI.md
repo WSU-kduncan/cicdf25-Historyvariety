@@ -94,12 +94,27 @@ The workflow file `gitactions.yml` with workflow `Docker-Login-Build-Push` perfo
   3. `Build and push Docker image`: `uses: docker/build-push-action@v5` to build and push the *Docker* image.
       - Builds the image using the repository root as the `context  .`(7)
       - Pushes the Docker image using the tag `latest`
-    
+  [Link to Github workflow file](web-content/index.html)
 ### Values to update for Another Repository
 
   - Change `DOCKER_HUB_REPO` in `env`: to your repository name.
   - Update the `Docker tag` under `tags`: to match your *DockerHub* username and image.
-  - Update secrets if needed to match your DockerHub credentials.
+  - Update secrets if needed to match your *DockerHub* credentials.
+
+### Testing and Verification Guide
+
+1. Testing the Workflow
+   - In your terminal, `push` a change.
+   - Navigate to your GitHub repository webpage, and check the *Actions* for the Workflow status.
+   - Confirm everything is completed properly and looks good; it should have checkmarks for every task completed.
+2. Verifying the Image was pushed to Docker
+   - To do this, just run your image locally!
+   ```
+     docker pull <dockerhub-username>/project4:latest
+     docker run -it --rm <dockerhub-username>/project4:latest
+   ```
+3. [My Dockerhub Repository](https://hub.docker.com/r/historyvariety/project4)
+
 
 ### Diagram
 
