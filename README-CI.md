@@ -19,9 +19,14 @@ This Project was used to create an automated system that builds, tags, and deplo
 ### Diagram
 ```mermaid
   graph TD
-      Developer/Programmer["Commits creates git tags] --> GitHub["GitHub Repository"]
-      GitHub --> Workflow["GitHub Actions Workflow: gitactions.yml/Docker-Login-Build-Push"]
+      Developer["Developer commits code / creates git tag"] --> GitHub["GitHub Repository"]
+      GitHub --> Workflow["GitHub Actions Workflow: gitactions.yml / Docker-Login-Build-Push"]
       Workflow --> Checkout["Step 1: Checkout repository"]
+      Workflow --> Metadata["Step 2: Extract Docker metadata"]
+      Workflow --> Login["Step 3: Login to DockerHub using secrets"]
+      Workflow --> BuildPush["Step 4: Build & push Docker image"]
+      BuildPush --> DockerHub["DockerHub Container Area/Thing"]
+      DockerHub --> Pull/Run["Docker image ready for pull,run,deploy"]
 ```
 ### Dockerfile and Website Content
 
