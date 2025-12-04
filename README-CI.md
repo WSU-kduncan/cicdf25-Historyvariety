@@ -19,7 +19,7 @@ This Project was used to create an automated system that builds, tags, and deplo
 ### Diagram
 ```mermaid
   graph TD
-      Developer/Programmer["Commits/creates git tags] --> GitHub["GitHub Repository"]
+      Developer/Programmer["Commits creates git tags] --> GitHub["GitHub Repository"]
       GitHub --> Workflow["GitHub Actions Workflow: gitactions.yml/Docker-Login-Build-Push"]
       Workflow --> Checkout["Step 1: Checkout repository"]
 ```
