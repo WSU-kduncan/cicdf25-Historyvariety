@@ -86,7 +86,21 @@ Finally, it runs a new container in detached mode.
          - Payloads are verified with a shared secret `ariel`.
          - This file should be added to your GitHub repository under `deployment/hooks.json`
   - Verify the hook is loaded with command: `webhook -hooks ~/cicdf25-Historyvariety/deployment/hooks.json -verbose` -- you should see ....found 1 hook(s) in file...
-
+3. Test Receiving Payloads
+  - Copy contents from `payload.json`: [Link to payload.json](deployment/payload.json)
+  - Create the signature with the commands:
+    ```
+    export SECRET="ariel"
+    export SIGNATURE=$(cat payload.json | openssl dgst -sha1 -hmac "$SECRET" | sed 's/^.* //')
+    ```
+  - Send payload with command:
+    ```
+    curl -v -H "X-Hub-Signature: sha1=$SIGNATURE" \
+     -H "Content-Type: application/json" \
+     -d @payload.json \
+     http://127.0.0.1:9000/hooks/refresh-container
+    ```
+- You should see: `payload received!`
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
