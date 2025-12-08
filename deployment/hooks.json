@@ -4,15 +4,13 @@
     "execute-command": "/home/ec2-user/cicdf25-Historyvariety/deployment/refresh.sh",
     "command-working-directory": "/home/ec2-user/cicdf25-Historyvariety/deployment",
     "response-message": "Payload received, refreshing container!",
-    "response-headers":
-    [
+    "response-headers": [
       {
         "name": "Access-Control-Allow-Origin",
         "value": "*"
       }
     ],
-    "pass-arguments-to-command":
-    [
+    "pass-arguments-to-command": [
       {
         "source": "payload",
         "name": "head_commit.id"
@@ -26,29 +24,23 @@
         "name": "pusher.email"
       }
     ],
-    "trigger-rule":
-    {
-      "and":
-      [
+    "trigger-rule": {
+      "and": [
         {
-          "match":
-          {
+          "match": {
             "type": "payload-hmac-sha1",
             "secret": "ariel",
-            "parameter":
-            {
+            "parameter": {
               "source": "header",
               "name": "X-Hub-Signature"
             }
           }
         },
         {
-          "match":
-          {
+          "match": {
             "type": "value",
             "value": "refs/heads/main",
-            "parameter":
-            {
+            "parameter": {
               "source": "payload",
               "name": "ref"
             }
@@ -58,4 +50,3 @@
     }
   }
 ]
-
