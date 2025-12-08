@@ -107,6 +107,25 @@ Finally, it runs a new container in detached mode.
     - Check the logs to make sure your script executes and the Docker container refreshes.
 5. Verify Docker container status:
   - run command: `docker ps`
+### Configuring a Webhook Service on EC2 Instance
+1. Create Systemd Service File
+   - In the terminal type:  `vim /etc/systemd/system/webhook.service` the copy and paste the contents of [webhook.service](deployment/webhook.service) into it.
+   - This will ensure that the webhook service will start on boot.
+2. Enable and Start the Service
+   - Enter this series of commands:
+     ```
+      sudo systemctl daemon-reload
+      sudo systemctl enable webhook.service
+      sudo systemctl start webhook.service
+      sudo systemctl status webhook.service
+     ```
+3. Verify Service Triggers Script
+   - Send a commit to Github.
+   - Send a test payload, there is one found in [Link to payload.json](deployment/payload.json), that you can send over.
+   - Monitor the Service logs: `journalctl -u webhook.service -f`
+
+[Link to hooks.json](deployment/hooks.json)
+[webhook.service File Link](deployment/webhook.service)
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
