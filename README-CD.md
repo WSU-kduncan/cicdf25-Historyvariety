@@ -44,4 +44,10 @@ The `refresh.sh` script automates updating a Docker container to the latest tagg
 To do this, it stops the currently running container, removes the old container to free up the container name, and pulls the latest image from the DockerHub repository.
 Finally, it runs a new container in detached mode.
 
+### Testing Guide for Refresh Script
+1. Give executable permissions to the refresh script using the command: `chmod +x deployment/refresh.sh`
+2. Check for any running containers before running the script using the command: `docker ps`
+3. Run the script with the command: `./deployment/refresh.sh`, *Note: if you see any No such container errors, this is handled by the script.*
+4. Verify the container is running with the command: `curl http://localhost`, you should see the website's HTML page script.
+
 [Link to refresh.sh](deployment/refresh.sh)
