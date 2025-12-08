@@ -132,7 +132,7 @@ Finally, it runs a new container in detached mode.
 ### Enabling GitHub to Send Payloads to the EC2 Webhook Listener
 Configure a GitHub Webhook
    - Inside your repository, go to *Settings* -> *Webhooks* -> *Add Webhook*
-     - Set payload url to: `http://18.212.91.97/hooks/refresh-container`
+     - Set payload url to: `http://18.212.91.97:9000/hooks/refresh-container`
      - Set content type to: `application/json`
      - Set Secret to: `ariel`
      - Set SSL to: `Disable (EC2 HTTP listener)`
