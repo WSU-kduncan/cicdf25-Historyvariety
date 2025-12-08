@@ -11,12 +11,15 @@ docker rm $CONTAINER || true	# removes the old container to free up the name for
 
 echo "Pulling the latest image..."
 docker pull $IMAGE
-
+# Run in detached mode
+# give container name
+# map to port 80
+# Restart
 echo "Starting a new container..."
-docker run -d \	# Run in detached mode
-  --name $CONTAINER \	# give container name
-  -p 80:80 \	# map to port 80
-  --restart unless-stopped \	# Restart
+docker run -d \	
+  --name $CONTAINER \	
+  -p 80:80 \	
+  --restart unless-stopped \	
   $IMAGE
 
 echo "Deployment refresh complete!"
