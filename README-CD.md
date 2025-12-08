@@ -100,7 +100,13 @@ Finally, it runs a new container in detached mode.
      -d @payload.json \
      http://127.0.0.1:9000/hooks/refresh-container
     ```
-- You should see: `payload received!`
+- You should see: `payload received, refreshing container!`
+4. Monitor logs
+  - Use this command to view and monitor the logs:
+    - `journalctl -u webhook.service -f`
+    - Check the logs to make sure your script executes and the Docker container refreshes.
+5. Verify Docker container status:
+  - run command: `docker ps`
 
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
