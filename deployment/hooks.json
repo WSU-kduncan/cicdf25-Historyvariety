@@ -34,7 +34,7 @@
           "match":
           {
             "type": "payload-hmac-sha1",
-            "secret": "MY_SECRET_HERE",
+            "secret": "ariel",
             "parameter":
             {
               "source": "header",
