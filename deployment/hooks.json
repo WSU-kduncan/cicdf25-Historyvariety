@@ -11,18 +11,9 @@
       }
     ],
     "pass-arguments-to-command": [
-      {
-        "source": "payload",
-        "name": "head_commit.id"
-      },
-      {
-        "source": "payload",
-        "name": "pusher.name"
-      },
-      {
-        "source": "payload",
-        "name": "pusher.email"
-      }
+      { "source": "payload", "name": "head_commit.id" },
+      { "source": "payload", "name": "pusher.name" },
+      { "source": "payload", "name": "pusher.email" }
     ],
     "trigger-rule": {
       "and": [
@@ -30,23 +21,18 @@
           "match": {
             "type": "payload-hmac-sha1",
             "secret": "ariel",
-            "parameter": {
-              "source": "header",
-              "name": "X-Hub-Signature"
-            }
+            "parameter": { "source": "header", "name": "X-Hub-Signature" }
           }
         },
         {
           "match": {
             "type": "value",
             "value": "refs/heads/main",
-            "parameter": {
-              "source": "payload",
-              "name": "ref"
-            }
+            "parameter": { "source": "payload", "name": "ref" }
           }
         }
       ]
     }
   }
 ]
+
