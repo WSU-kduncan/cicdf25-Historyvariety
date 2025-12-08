@@ -24,3 +24,4 @@ This Project was used to create...
 5. Add your user to the docker group, so you don't have to run commands with sudo: `sudo usermod -aG docker ec2-user`
 6. Log out: `exit`
 7. Log back in to see changes in effect: `ssh -i your-key.pem ec2-user@YOUR_EC2_PUBLIC_IP`
+8. Test Docker installation with commands: `docker version` and `docker run hello-world`
