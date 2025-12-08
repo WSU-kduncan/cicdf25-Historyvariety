@@ -196,3 +196,4 @@ Finally, it runs a new container in detached mode.
 11. https://curl.se/docs/manpage.html -> gave me a way to use curl to test my payloads.
 12. https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams -> Mermaid diagram page syntax, I love Mermaid diagrams so much
 13. https://www.markdownguide.org/basic-syntax/ -> I used this to help with the formatting for Markdown, and it really also helped me organise things better.
+14.  https://github.blog/developer-skills/github/include-diagrams-markdown-files-mermaid/ -> Mermaid markdown graph link
