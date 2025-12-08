@@ -38,3 +38,8 @@ This Project was used to create...
 
   - `-it`: Is interactive mode, very useful for debugging/testing containers and such.
   - `-d`: Is detached mode, runs in the background, more suitable for production.
+
+### Script for Container Application Refresh
+The `refresh.sh` script automates updating a Docker container to the latest tagged image on DockerHub. 
+To do this, it stops the currently running container, removes the old container to free up the container name, and pulls the latest image from the DockerHub repository.
+Finally, it runs a new container in detached mode.
