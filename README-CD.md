@@ -51,3 +51,10 @@ Finally, it runs a new container in detached mode.
 4. Verify the container is running with the command: `curl http://localhost`, you should see the website's HTML page script.
 
 [Link to refresh.sh](deployment/refresh.sh)
+
+### Resources
+1. Grammarly -> Spellchecked and fixed grammatical errors.
+2. ChatGPT (GPT-5.1) -> Prompt: "Create a small beach-themed website with two HTML files and one CSS file."
+3. https://github.com/pattonsgirl/CEG3120/blob/main/Projects/Project5/sample-script.sh -> I used this for my refresh script.
+4. https://devhints.io/bash -> old bash scripting guide, I used this as a ref to remember how to code certain conditions, specifically the `|| true` line, as I forgot the or operator.
+5. https://docs.docker.com/reference/cli/docker/ -> Loose guide to make sure I wasn't entering any of the Docker commands wrong.
