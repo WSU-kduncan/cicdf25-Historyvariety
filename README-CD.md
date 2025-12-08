@@ -1,7 +1,20 @@
 # Project 5
 Brianna Perdue
 
-## Project Details
+## Project-Details
+
+### Diagram
+```mermaid
+  graph TD
+      Developer--> GitHub
+      GitHub --> Workflow
+      Workflow --> Checkout
+      Workflow --> Metadata
+      Workflow --> Login
+      Workflow --> Build/Push
+      BuildPush --> DockerHub
+      DockerHub --> Pull/Run
+```
 
 ### Project Description
 This Project was used to create...
