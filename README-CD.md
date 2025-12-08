@@ -1,7 +1,7 @@
 # Project 5
 Brianna Perdue
 
-## Project-Details
+## Project Details
 
 ### Diagram
 ```mermaid
