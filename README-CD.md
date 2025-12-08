@@ -176,6 +176,12 @@ Finally, it runs a new container in detached mode.
 - The webhook uses `HMAC SHA-1 signatures` with the secret `ariel` to ensure payloads come from GitHub.
 - The hook file continues to validate that the branch is `refs/heads/main`, so other branches or unauthorised requests are ignored.
 
+## Known Issues / Limitations
+- If the Public IP of the instance changes, then you have to edit the GitHub webhook to match it.
+- There's a bunch of failed webhook runs from when my dumbass forgot to take off the push mark and didn't change the port mapping.
+- There's a payload JSON that might or might not work, given that an extra line was added if anyone externally testing it messes up.
+- The rules of the EC2 instance I ran were very open; it is highly probable to fuck up given any limited changes to the Security group. I have yet to test that theory.
+
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
 2. ChatGPT (GPT-5.1) -> Prompt: "Create a small beach-themed website with two HTML files and one CSS file."
