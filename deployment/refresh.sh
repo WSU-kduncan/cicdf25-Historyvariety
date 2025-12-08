@@ -9,17 +9,12 @@ docker stop $CONTAINER || true	# docker stop - stops the running container
 #  || true makes the script continue even if stop fails
 docker rm $CONTAINER || true	# removes the old container to free up the name for a new one
 
-echo "Pulling the latest image..."
-docker pull $IMAGE
-# Run in detached mode
-# give container name
-# map to port 80
-# Restart
 echo "Starting a new container..."
-docker run -d \	
-  --name $CONTAINER \	
-  -p 80:80 \	
-  --restart unless-stopped \	
+# Run in detached mode, give container name, map port 80, restart unless stopped
+docker run -d \
+  --name $CONTAINER \
+  -p 80:80 \
+  --restart unless-stopped \
   $IMAGE
 
 echo "Deployment refresh complete!"
