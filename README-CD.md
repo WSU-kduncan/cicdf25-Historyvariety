@@ -25,7 +25,7 @@ This Project was used to create...
 | **AMI**                      | Amazon Linux 2023: ami-0fa3fe0fa7920f68e                        |
 | **Instance Type**            | t.2 medium          |
 | **Volume Size**              | 30 GB GP3            |
-| **Security Group — Inbound Rules**     |    Port 22 (SSH from my home IP), Port 80 (HTTP from anywhere),  Port 443 (for HTTPS)                 |
+| **Security Group — Inbound Rules**     |    Port 22 (SSH from my home IP), Port 80 (HTTP from anywhere),  Port 443 (for HTTPS), Port 9000 (for webhook)                 |
 | **Security Group Purpose** | You only want the ports needed for admin access (SSH) and serving the web app (HTTP/HTTPS) open. |
 
 ### How to Set up Docker on your Instance
