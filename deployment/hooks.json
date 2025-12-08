@@ -1,0 +1,61 @@
+[
+  {
+    "id": "refresh-container",
+    "execute-command": "/home/ec2-user/cicdf25-Historyvariety/deployment/refresh.sh",
+    "command-working-directory": "/home/ec2-user/cicdf25-Historyvariety/deployment",
+    "response-message": "Payload received, refreshing container!",
+    "response-headers":
+    [
+      {
+        "name": "Access-Control-Allow-Origin",
+        "value": "*"
+      }
+    ],
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "head_commit.id"
+      },
+      {
+        "source": "payload",
+        "name": "pusher.name"
+      },
+      {
+        "source": "payload",
+        "name": "pusher.email"
+      }
+    ],
+    "trigger-rule":
+    {
+      "and":
+      [
+        {
+          "match":
+          {
+            "type": "payload-hmac-sha1",
+            "secret": "MY_SECRET_HERE",
+            "parameter":
+            {
+              "source": "header",
+              "name": "X-Hub-Signature"
+            }
+          }
+        },
+        {
+          "match":
+          {
+            "type": "value",
+            "value": "refs/heads/main",
+            "parameter":
+            {
+              "source": "payload",
+              "name": "ref"
+            }
+          }
+        }
+      ]
+    }
+  }
+]
+
