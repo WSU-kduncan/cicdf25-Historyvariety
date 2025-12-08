@@ -65,6 +65,29 @@ Finally, it runs a new container in detached mode.
 
 [Link to refresh.sh](deployment/refresh.sh)
 
+### Configuring A listening Service
+1. Install `adnanh/webhook` using these steps and commands below:
+   ```
+    # 1. Download and extract webhook
+    wget https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz
+    tar -xvzf webhook-linux-amd64.tar.gz
+    
+    # 2. Move binary to /usr/local/bin
+    sudo mv webhook-linux-amd64 /usr/local/bin/webhook
+    
+    # 3. Verify installation
+    webhook -version
+   ```
+2. Create Hook Definition File:
+   - Go into your `deployment folder` with command: `cd ~/cicdf25-Historyvariety/deployment`
+   - Copy the contents from `hooks.json` to define the webhook behavior: [Link to hooks.json](deployment/hooks.json)
+     - Notes:
+         - The script runs when a push to main is detected.
+         - Payloads are verified with a shared secret `ariel`.
+         - This file should be added to your GitHub repository under `deployment/hooks.json`
+  - Verify the hook is loaded with command: `webhook -hooks ~/cicdf25-Historyvariety/deployment/hooks.json -verbose` -- you should see ....found 1 hook(s) in file...
+
+
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
 2. ChatGPT (GPT-5.1) -> Prompt: "Create a small beach-themed website with two HTML files and one CSS file."
