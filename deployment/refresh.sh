@@ -4,6 +4,9 @@
 IMAGE="historyvariety/project4:latest"	#  DockerHub image to pull
 CONTAINER="project4-app"		#  Local container name
 
+echo "Pulling the latest image from Docker Hub..."
+docker pull $IMAGE
+
 echo "Stopping the old container..."
 docker stop $CONTAINER || true	# docker stop - stops the running container
 #  || true makes the script continue even if stop fails
