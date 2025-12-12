@@ -24,27 +24,29 @@
         "name": "workflow_run.actor.email"
       }
     ],
-"trigger-rule": {
-  "and": [
-    {
-      "match": {
-        "type": "payload-hmac-sha1",
-        "secret": "ariel",
-        "parameter": {
-          "source": "header",
-          "name": "X-Hub-Signature"
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "payload-hmac-sha1",
+            "secret": "ariel",
+            "parameter": {
+              "source": "header",
+              "name": "X-Hub-Signature"
+            }
+          }
+        },
+        {
+          "match": {
+            "type": "value",
+            "value": "success",
+            "parameter": {
+              "source": "payload",
+              "name": "workflow_run.conclusion"
+            }
+          }
         }
-      }
-    },
-    {
-      "match": {
-        "type": "value",
-        "value": "success",
-        "parameter": {
-          "source": "payload",
-          "name": "workflow_run.conclusion"
-        }
-      }
+      ]
     }
-  ]
-}
+  }
+]
