@@ -13,15 +13,15 @@
     "pass-arguments-to-command": [
       {
         "source": "payload",
-        "name": "head_commit.id"
+        "name": "workflow_run.head_sha"
       },
       {
         "source": "payload",
-        "name": "pusher.name"
+        "name": "workflow_run.actor.login"
       },
       {
         "source": "payload",
-        "name": "pusher.email"
+        "name": "workflow_run.actor.email"
       }
     ],
 "trigger-rule": {
