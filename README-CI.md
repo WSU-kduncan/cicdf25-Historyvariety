@@ -21,6 +21,10 @@ This Project was used to create an automated system that builds, tags, and deplo
   graph TD
       Developer--> GitHub
       GitHub --> Workflow
+      Workflow --> DockerHub
+      GitHub --> EC2Webhook
+      EC2Webhook --> RefreshScript
+      RefreshScript --> DockerContainer
       Workflow --> Checkout
       Workflow --> Metadata
       Workflow --> Login

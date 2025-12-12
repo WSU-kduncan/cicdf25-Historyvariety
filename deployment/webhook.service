@@ -1,0 +1,12 @@
+[Unit]
+Description=Webhook listener for container refresh
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/webhook -hooks /home/ec2-user/cicdf25-Historyvariety/deployment/hooks.json -verbose
+WorkingDirectory=/home/ec2-user/cicdf25-Historyvariety/deployment
+Restart=always
+User=ec2-user
+
+[Install]
+WantedBy=multi-user.target
