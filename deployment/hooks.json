@@ -42,7 +42,7 @@
             "value": "success",
             "parameter": {
               "source": "payload",
-              "name": "conclusion"
+              "name": "workflow_run.conclusion"
             }
           }
         }
