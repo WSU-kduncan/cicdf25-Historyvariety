@@ -182,6 +182,38 @@ Finally, it runs a new container in detached mode.
 - There's a payload JSON that might or might not work, given that an extra line was added if anyone externally testing it messes up.
 - The rules of the EC2 instance I ran were very open; it is highly probable to fuck up given any limited changes to the Security group. I have yet to test that theory.
 
+## Pathches on 12/12/2025 - from Demo
+1. I updated the `hooks.json` file to correctly process GitHub webhook payloads instead of a locally defined test payload (my own created payload). As, GitHub sends its own structured JSON payload, which must be matched exactly by the webhook configuration. Thank you, Ms Duncan, for clarifying that in my Demo.
+2. Instead of checking for the `ref` value/the custom file, the webhook now evaluates the GitHub workflow run result, using `workflow_run.conclusion`, only triggering the deployment when the workflow completes successfully--`success`.
+3. Updated my `refresh.sh` to actually pull the Docker image, because I figured out I forgot to put in that part.
+
+### Testing-Guide-Updated to Match Pathches - 12/12/2025
+*Note: These notes were actually used during my testing*
+
+1. Go to the local browser before changing anything on the website: http://107.20.69.237/ 
+2. SSH into instance: ssh -i p5.pem ec2-user@107.20.69.237 - see known limitations for the IP issue
+3. Show Docker status: docker ps and docker images
+4. Make any change to my file: vim index.html -> change a line to say something like Demo change or whatever.
+5. Commit and push changes!
+```
+  git add *
+  git commit -m "Demoing Changes - update content"
+  git push
+```
+6. Tag and push changes:
+```
+git tag v2.0.9
+git push origin v2.0.9
+```
+7. Show the action is running: Repo -> Actions -> select your workflow -> show logs
+8. Show DockerHub received the new image: Basically, login and check my dockerhub image at here: https://hub.docker.com/r/historyvariety/project4/tags
+9. Show payload log from GitHub: Repo -> Settings -> Webhooks -> Select webhook -> Recent Deliveries
+10. Check webhook service status on EC2: `sudo systemctl status webhook.service`
+  - Active: active (running) means its good to go.
+11. Show webhooks log proving refresh.sh ran: `journalctl -u webhook.service -f`
+12. Showing site post change: http://107.20.69.237/
+13. Show Docker status: docker ps and docker images - check to make sure your tags were pushed. 
+
 ### Resources
 1. Grammarly -> Spellchecked and fixed grammatical errors.
 2. ChatGPT (GPT-5.1) -> Prompt: "Create a small beach-themed website with two HTML files and one CSS file."
